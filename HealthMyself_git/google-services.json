@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "250731542642",
+    "project_id": "healthmyself-a1ef3",
+    "storage_bucket": "healthmyself-a1ef3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:250731542642:android:8a234bd516bd88ae122aeb",
+        "android_client_info": {
+          "package_name": "com.example.healthmyself"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "250731542642-crct4jl3gi11uq5gnbctrokhlkbl13mt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJt9hMTq_RwkkZxF8f8v9jFzubH5KCm0g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "250731542642-crct4jl3gi11uq5gnbctrokhlkbl13mt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
