@@ -10,7 +10,7 @@ class AdapterMainFragment(fm : FragmentManager, private val fragmentCount : Int)
 
     override fun getItem(position: Int): Fragment {
         return when(position){
-            0 -> FragmentMainTimer()
+            0 -> FragmentMainTimer_Java()
             1 -> FragmentMainCalendar()
             2 -> FragmentMainHome()
             3 -> FragmentMainVideo()

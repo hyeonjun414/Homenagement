@@ -11,8 +11,8 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
+import com.example.healthmyself.AccountDeleteDialog
 import com.example.healthmyself.Activity.LoginActivity
-import com.example.healthmyself.Dialog.AccountDeleteDialog
 import com.example.healthmyself.R
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
