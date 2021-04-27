@@ -18,13 +18,7 @@
         <activity android:name=".Activity.MainActivity" />
         <activity android:name=".Activity.VideoActivity" />
         <activity android:name=".Activity.PopUpActivity" android:theme="@android:style/Theme.Dialog"/>
-        <activity android:name=".Activity.LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <service
             android:name=".Service.WidgetService"
             android:enabled="true" />
