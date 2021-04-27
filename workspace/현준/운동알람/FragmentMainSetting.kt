@@ -15,11 +15,11 @@ import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.healthmyself.AccountDeleteDialog
 import com.example.healthmyself.Activity.LoginActivity
-import com.example.healthmyself.Dialog.AccountDeleteDialog
-import com.example.healthmyself.Dialog.AlarmDialog
+import com.example.healthmyself.AlarmDialog
+import com.example.healthmyself.AlarmReceiver
 import com.example.healthmyself.R
-import com.example.healthmyself.Service.AlarmReceiver
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
