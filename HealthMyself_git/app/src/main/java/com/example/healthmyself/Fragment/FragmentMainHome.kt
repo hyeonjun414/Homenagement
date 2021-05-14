@@ -1,19 +1,21 @@
 package com.example.healthmyself.Fragment
 
+import android.app.DatePickerDialog
+import android.content.Context
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.text.InputFilter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
-import android.app.DatePickerDialog
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.healthmyself.Activity.MainActivity
 import com.example.healthmyself.R
-import org.w3c.dom.Text
 import java.util.*
-import kotlin.math.log
 
 
 class FragmentMainHome : Fragment() {
@@ -21,14 +23,15 @@ class FragmentMainHome : Fragment() {
         super.onCreate(savedInstanceState)
 
     }
-    var year = 0
-    var month = 0
-    var day = 0
     var time_x : Long = 0
     var time_y : Long = 0
+    var time_x_pref : Long = 0
+    var time_y_pref: Long = 0
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?): View? {
+        val pref = requireActivity().getPreferences(0)
+        val editor = pref.edit()
         val view = inflater.inflate(R.layout.fragment_main_home, null)
         val youtube_fragment = view.findViewById<TextView>(R.id.youtube)
         val timer_fragment = view.findViewById<TextView>(R.id.timer)
@@ -36,6 +39,12 @@ class FragmentMainHome : Fragment() {
         val cal_fragment = view.findViewById<TextView>(R.id.cal)
         val tv_d_day = view.findViewById<TextView>(R.id.d_day_text)
         val progress = view.findViewById<ProgressBar>(R.id.d_day)
+
+        if(pref.getLong("d-day",time_x_pref)==0.toLong()){
+            tv_d_day.setText("d-day setting!")
+        }else{
+            setting_d_day(pref, tv_d_day, progress)
+        }
 
         youtube_fragment.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
@@ -60,8 +69,8 @@ class FragmentMainHome : Fragment() {
 
         tv_d_day.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                showDatePicker()
-
+                showDatePicker(pref, tv_d_day)
+                setting_d_day(pref, tv_d_day, progress)
             }
         })
         // Inflate the layout for this fragment
@@ -69,19 +78,40 @@ class FragmentMainHome : Fragment() {
 
         return view
     }
-    fun showDatePicker() {
+    fun showDatePicker(pref :SharedPreferences, tv_d_day : TextView) {
         val cal = Calendar.getInstance()
-        time_x = cal.timeInMillis
+        var year : Int
+        var month : Int
+        var day : Int
+        val editor = pref.edit()
+        editor.putLong("setting_day", cal.timeInMillis).apply()
         getActivity()?.let {
-            DatePickerDialog(it, DatePickerDialog.OnDateSetListener { datePicker, y, m, d->
+            DatePickerDialog(it,  R.style.DialogTheme ,DatePickerDialog.OnDateSetListener { datePicker, y, m, d->
                 cal.set(y, m, d)
-                time_y = cal.timeInMillis
-                Toast.makeText(getActivity(), ((time_y - time_x)/(24*60*60*1000)).toString(), Toast.LENGTH_SHORT).show()
+                time_x = cal.timeInMillis
+                editor.putLong("d-day", time_x).apply()
             }, cal.get(Calendar.YEAR),
                     cal.get(Calendar.MONTH),
                     cal.get(Calendar.DATE)).show()
         }
+
     }
 
+    fun setting_d_day(pref : SharedPreferences, tv_d_day: TextView, progress : ProgressBar){
+        val cal = Calendar.getInstance()
+        time_x_pref = pref.getLong("d-day",time_x_pref)
+        time_y_pref = pref.getLong("setting_day", time_y_pref)
+        val d_day = (time_x_pref - cal.timeInMillis)/(24*60*60*1000)+1
+        val past_day = (time_y_pref - cal.timeInMillis)/(24*60*60*1000)+1
+
+        tv_d_day.setText("D-" + (d_day).toString())
+
+        if(tv_d_day.text.equals("D-0")){
+            tv_d_day.setText("D-DAY!!!")
+        }
+
+        Toast.makeText(getContext(), (2.toDouble()/d_day.toDouble()*100).toString(),Toast.LENGTH_SHORT ).show()
+        progress.setProgress((past_day.toDouble()/d_day.toDouble()*100).toInt())
+    }
 
 }
