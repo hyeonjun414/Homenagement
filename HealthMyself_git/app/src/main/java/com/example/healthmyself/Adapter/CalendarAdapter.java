@@ -217,7 +217,6 @@ public class CalendarAdapter extends RecyclerView.Adapter {
         public void initView(View v){
 
             itemDay = (TextView)v.findViewById(R.id.item_day);
-            itemDay_txt = (TextView)v.findViewById(R.id.item_day_text);
             item_layout = (RelativeLayout)v.findViewById(R.id.item_layout);
             ct = v.getContext();
         }
@@ -251,9 +250,11 @@ public class CalendarAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
 
-                    Log.d("day", gfd.getData());
                     ////////////////
                     Intent i = new Intent(ct, ShowExDialog.class);
+                    i.putExtra("ex", gfd.getData().getEx());
+                    i.putExtra("time", gfd.getData().getTime());
+                    i.putExtra("video", gfd.getData().getVideo());
                     ct.startActivity(i);
 
                 }
