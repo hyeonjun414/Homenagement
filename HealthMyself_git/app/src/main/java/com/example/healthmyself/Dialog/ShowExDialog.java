@@ -13,6 +13,7 @@ import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.healthmyself.CustomClass.DateUtil;
@@ -28,15 +29,27 @@ import java.util.Objects;
 
 public class ShowExDialog extends Activity {
     private Context mContext;
-
+    String ex="";
+    String time="";
+    String video="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.show_ex_dialog);
-
+        TextView txt_ex = findViewById(R.id.txt_showEx_ex);
+        TextView txt_time = findViewById(R.id.txt_showEx_time);
+        TextView txt_video = findViewById(R.id.txt_showEx_video);
         Button cancelButton = findViewById(R.id.btn_showEx_Cancel);
+
+        ex = getIntent().getStringExtra("ex");
+        time = getIntent().getStringExtra("time");
+        video = getIntent().getStringExtra("video");
+
+        txt_ex.setText(ex);
+        txt_time.setText(time);
+        txt_video.setText(video);
 
         cancelButton.setOnClickListener(new Button.OnClickListener() {
             @Override
