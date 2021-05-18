@@ -3,6 +3,7 @@ package com.example.healthmyself.Service;
 import android.app.Fragment;
 import android.app.Service;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.PixelFormat;
 import android.os.Binder;
 import android.os.Build;
@@ -41,6 +42,7 @@ public class WidgetService extends Service {
     CountDownTimer countDownTimer;
     int endTime = 250;
     int flag = 0;
+    boolean orientation = true; // true = ORIENTATION_PORTRAIT, false = ORIENTATION_LANDSCAPE
     String original_time = "";
     float height,width;
     IBinder mBinder = new MyBinder();
@@ -140,7 +142,8 @@ public class WidgetService extends Service {
                         startClickTime = Calendar.getInstance().getTimeInMillis();
                         initialX = layoutParams.x;
                         initialY = layoutParams.y;
-
+                        System.out.println(initialX);
+                        System.out.println(initialY);
                         long double_tab = Calendar.getInstance().getTimeInMillis() - dropClickTime;
 
                         if(double_tab < MIN_CLICK_DURATION){
@@ -179,8 +182,10 @@ public class WidgetService extends Service {
                             }
 
                         }else{
-                            if(layoutParams.y > (height*0.6))
+                            if(layoutParams.y > (height*0.65)&&orientation)
                             {
+                                stopSelf();
+                            }else if(layoutParams.y > (width*0.4)&&!orientation){
                                 stopSelf();
                             }
                         }
@@ -191,16 +196,33 @@ public class WidgetService extends Service {
                         //claculate X & Y cordinates of view
                         layoutParams.x = initialX + (int)(initialTouchX - motionEvent.getRawX());
                         layoutParams.y = initialY + (int)(motionEvent.getRawY() - initialTouchY);
-
+                        System.out.println(height);
+                        System.out.println(layoutParams.y);
                         //update layout with new condinates
                         windowManager.updateViewLayout(mFloatingView, layoutParams);
-
-                        if(layoutParams.y > (height*0.6))
-                        {
-                            imageClose.setImageResource(R.drawable.close_black);
-                        }else{
-                            imageClose.setImageResource(R.drawable.close_white);
+                        Configuration config = getResources().getConfiguration();
+                        if(config.orientation == Configuration.ORIENTATION_PORTRAIT){
+                            //TODO
+                            if(layoutParams.y > (height*0.65))
+                            {
+                                orientation = true;
+                                imageClose.setImageResource(R.drawable.close_black);
+                            }else{
+                                imageClose.setImageResource(R.drawable.close_white);
+                            }
                         }
+                        else if(config.orientation == Configuration.ORIENTATION_LANDSCAPE){
+                            //TODO
+                            if(layoutParams.y > (width*0.4))
+                            {
+                                orientation = false;
+                                imageClose.setImageResource(R.drawable.close_black);
+                            }else{
+                                imageClose.setImageResource(R.drawable.close_white);
+                            }
+                        }
+
+
 
 
                         return true;
