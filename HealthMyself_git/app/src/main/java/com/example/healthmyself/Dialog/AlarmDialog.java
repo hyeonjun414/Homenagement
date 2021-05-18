@@ -2,6 +2,11 @@ package com.example.healthmyself.Dialog;
 
 import android.app.Activity;
 import android.app.AlarmManager;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.Fragment;
 import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
@@ -16,6 +21,7 @@ import android.widget.Button;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.healthmyself.Fragment.FragmentMainSetting;
 import com.example.healthmyself.R;
 import com.example.healthmyself.Service.AlarmReceiver;
 import com.example.healthmyself.Service.DeviceBootReceiver;
@@ -26,7 +32,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
-public class AlarmDialog extends Activity {
+public class AlarmDialog extends AppCompatActivity {
 
 
     @Override
@@ -37,7 +43,7 @@ public class AlarmDialog extends Activity {
 
 
         final TimePicker picker=(TimePicker)findViewById(R.id.timePicker);
-        picker.setIs24HourView(true);
+        //picker.setIs24HourView(true);
 
 
         // 앞서 설정한 값으로 보여주기
@@ -113,9 +119,11 @@ public class AlarmDialog extends Activity {
                 String date_text = new SimpleDateFormat("yyyy년 MM월 dd일 EE요일 a hh시 mm분 ", Locale.getDefault()).format(currentDateTime);
                 Toast.makeText(getApplicationContext(),date_text + "으로 알람이 설정되었습니다!", Toast.LENGTH_SHORT).show();
 
+                String show_alarmtext = new SimpleDateFormat("a hh시 mm분", Locale.getDefault()).format(currentDateTime);
                 //  Preference에 설정한 값 저장
                 SharedPreferences.Editor editor = getSharedPreferences("daily alarm", MODE_PRIVATE).edit();
                 editor.putLong("nextNotifyTime", (long)calendar.getTimeInMillis());
+                editor.putString("Alarminfo",show_alarmtext);
                 editor.apply();
 
 
@@ -125,6 +133,10 @@ public class AlarmDialog extends Activity {
                 SharedPreferences.Editor edit = save.edit();
                 edit.putBoolean("alarm", true);
                 edit.apply();
+
+
+                FragmentMainSetting setting = (FragmentMainSetting)getSupportFragmentManager().findFragmentById(R.id.fragment_setting);
+                setting.updateAlarminfo();
 
                 finish();
             }

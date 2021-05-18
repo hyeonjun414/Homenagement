@@ -32,7 +32,7 @@
         <activity android:name=".Activity.VideoActivity" >
 
         </activity>
-        <activity android:name=".Dialog.AlarmDialog" android:theme="@android:style/Theme.Material.Dialog"/>
+        <activity android:name=".Dialog.AlarmDialog" android:theme="@style/Theme.AppCompat"/>
         <activity android:name=".Dialog.ShowExDialog" android:theme="@android:style/Theme.Material.Dialog"/>
         <activity android:name=".Activity.PopUpActivity" android:theme="@android:style/Theme.Material.Dialog"/>
 

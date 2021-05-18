@@ -1,11 +1,15 @@
 package com.example.healthmyself.CustomClass;
 
+import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
+import com.example.healthmyself.R;
 import com.example.healthmyself.models.FirebaseData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -34,7 +38,7 @@ public class GetFirebaseData {
 
     public FirebaseData getData(){ return this.data; }
 
-    public void getFirebaseData(Calendar calendar, RelativeLayout layout){
+    public void getFirebaseData(Calendar calendar, RelativeLayout layout, Context context){
         mDatabase = FirebaseDatabase.getInstance().getReference();
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
         String full_day = DateUtil.getDate(calendar.getTimeInMillis(), DateUtil.CALENDAR_DAY_FORMAT);
@@ -49,9 +53,9 @@ public class GetFirebaseData {
                 else {
                     if(String.valueOf(task.getResult().getValue()).equals("null")){
                         setFlag(false);
-                        layout.setBackgroundColor(Color.WHITE);
+                        layout.setBackground(null);
                     }else{
-                        layout.setBackgroundColor(Color.YELLOW);
+                        layout.setBackground(ContextCompat.getDrawable(context, R.drawable.day_background));
                         setFlag(true);
                         data.setEx(String.valueOf(task.getResult().child("ex").getValue()));
                         data.setTime(String.valueOf(task.getResult().child("time").getValue()));

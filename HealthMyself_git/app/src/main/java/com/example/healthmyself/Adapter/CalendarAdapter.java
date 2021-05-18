@@ -228,7 +228,7 @@ public class CalendarAdapter extends RecyclerView.Adapter {
             String day = ((Day)model).getDay();
             int day_of_week = ((Day)model).getDOW();
             String flag = ((Day)model).getText();
-            gfd.getFirebaseData(((Day)model).getCal(), item_layout);
+            gfd.getFirebaseData(((Day)model).getCal(), item_layout, ct);
 
             Log.d("day", day);
             Log.d("day_of_week", String.valueOf(day_of_week));
@@ -249,14 +249,14 @@ public class CalendarAdapter extends RecyclerView.Adapter {
             item_layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    ////////////////
-                    Intent i = new Intent(ct, ShowExDialog.class);
-                    i.putExtra("ex", gfd.getData().getEx());
-                    i.putExtra("time", gfd.getData().getTime());
-                    i.putExtra("video", gfd.getData().getVideo());
-                    ct.startActivity(i);
-
+                    if(gfd.getFlag())
+                    {
+                        Intent i = new Intent(ct, ShowExDialog.class);
+                        i.putExtra("ex", gfd.getData().getEx());
+                        i.putExtra("time", gfd.getData().getTime());
+                        i.putExtra("video", gfd.getData().getVideo());
+                        ct.startActivity(i);
+                    }
                 }
             });
         };
