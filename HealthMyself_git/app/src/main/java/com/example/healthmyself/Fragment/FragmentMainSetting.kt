@@ -1,5 +1,6 @@
 package com.example.healthmyself.Fragment
 
+import android.app.Activity.RESULT_OK
 import android.app.AlarmManager
 import android.app.AlertDialog
 import android.app.PendingIntent
@@ -38,8 +39,6 @@ class FragmentMainSetting : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
 
-        val ft = requireFragmentManager().beginTransaction()
-        ft.add(this, "setting")
         val v = inflater.inflate(R.layout.fragment_main_setting, null)
         val text_uid = v.findViewById<TextView>(R.id.text_uid)
         val btn_logout = v.findViewById<TextView>(R.id.btn_logout)
@@ -71,6 +70,15 @@ class FragmentMainSetting : Fragment() {
         updateAlarminfo()
 
         return v
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode==1){
+            if(resultCode==RESULT_OK){
+                updateAlarminfo()
+            }
+        }
     }
 
     private fun signoutAccount(v: View?){
@@ -107,7 +115,8 @@ class FragmentMainSetting : Fragment() {
     }
 
     private fun moveToSetAlarm(){
-        startActivity(Intent(requireContext(), AlarmDialog::class.java))
+        val intent = Intent(requireContext(), AlarmDialog::class.java)
+        startActivityForResult(intent, 1)
     }
 
     private fun cancelAlarm(){

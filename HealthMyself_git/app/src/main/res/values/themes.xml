@@ -1,6 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar"></style>
+    <style name="Dialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:textColorPrimary">#FFFFFF</item>    <!--content text color-->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+
     <style name="Theme.HealthMyself" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>

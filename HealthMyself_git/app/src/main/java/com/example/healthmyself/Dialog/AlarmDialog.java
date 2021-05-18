@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlarmManager;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDialog;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -32,7 +34,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
-public class AlarmDialog extends AppCompatActivity {
+public class AlarmDialog extends Activity {
 
 
     @Override
@@ -134,16 +136,14 @@ public class AlarmDialog extends AppCompatActivity {
                 edit.putBoolean("alarm", true);
                 edit.apply();
 
-
-                FragmentMainSetting setting = (FragmentMainSetting)getSupportFragmentManager().findFragmentById(R.id.fragment_setting);
-                setting.updateAlarminfo();
-
+                Intent intent = new Intent();
+                setResult(RESULT_OK, intent);
                 finish();
             }
 
         });
-    }
 
+    }
 
     void diaryNotification(Calendar calendar)
     {
