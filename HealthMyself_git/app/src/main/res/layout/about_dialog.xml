@@ -4,7 +4,7 @@
     android:layout_gravity="center"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="350dp"
-    android:layout_height="400dp"
+    android:layout_height="500dp"
     android:theme="@style/DialogTheme">
 
     <LinearLayout
@@ -15,85 +15,84 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_height="50dp"
             android:textColor="#000"
             android:layout_margin="5dp"
-            android:text="운동 내역"
-            android:layout_gravity="center"
-            android:layout_weight="0.6"/>
+            android:text="ABOUT"
+            android:layout_gravity="center"/>
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:layout_marginBottom="50dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="16dp"
+                android:textColor="@color/black"
+                android:text= ""/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_margin="10dp"
+                android:textColor="@color/black"
+                android:text="캡스톤디자인 2021-1 (Homenagement)"
+                android:gravity="center"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_margin="10dp"
+                android:textColor="@color/black"
+                android:text="소속 : 단국대학교 소프트웨어학과"
+                android:gravity="center"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_margin="10dp"
+                android:textColor="@color/black"
+                android:text="팀원 : 차무송, 장현준"
+                android:gravity="center"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_margin="10dp"
+                android:textColor="@color/black"
+                android:text="제작기간 : 2021.03 ~ 2021.06"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_marginBottom="50dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textColor="@color/black"
-                android:text= "운동"/>
+                android:text= "GitHub"/>
             <TextView
                 android:id="@+id/txt_showEx_ex"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
+                android:layout_height="20dp"
                 android:textColor="@color/black"
-                android:text="000"
+                android:text="https://github.com/hyeonjun414/Homenagement"
+                android:autoLink="web"
                 android:gravity="center"/>
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="@color/black"
-                android:text= "시간"/>
-
-            <TextView
-                android:id="@+id/txt_showEx_time"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:textColor="@color/black"
-                android:text="000"
-                android:gravity="center"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="@color/black"
-                android:text= "체중"/>
-            <TextView
-                android:id="@+id/txt_showEx_weight"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:textColor="@color/black"
-                android:text="000"
-                android:gravity="center"/>
-        </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_height="40dp"
             android:orientation="horizontal"
-            android:layout_weight="0.5"
             android:layout_gravity="center">
 
             <Button

@@ -15,9 +15,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/applogo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/applogo"
         android:supportsRtl="true"
         android:theme="@style/GreenTheme">
         <activity android:name=".Activity.LoginActivity">
@@ -32,6 +32,7 @@
         <activity android:name=".Activity.VideoActivity" >
 
         </activity>
+        <activity android:name=".Dialog.AboutDialog" android:theme="@android:style/Theme.Material.Dialog" android:screenOrientation="portrait"/>
         <activity android:name=".Dialog.AlarmDialog" android:theme="@android:style/Theme.Material.Dialog" android:screenOrientation="portrait"/>
         <activity android:name=".Dialog.ShowExDialog" android:theme="@android:style/Theme.Material.Dialog" android:screenOrientation="portrait"/>
         <activity android:name=".Activity.PopUpActivity" android:theme="@android:style/Theme.Material.Dialog" android:screenOrientation="portrait"/>

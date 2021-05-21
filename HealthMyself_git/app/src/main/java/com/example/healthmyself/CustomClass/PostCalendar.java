@@ -11,16 +11,16 @@ public class PostCalendar {
 
     public String ex;
     public String time;
-    public String video;
+    public String weight;
 
     public PostCalendar(){
         // Default constructor required for calls to DataSnapshot.getValue(FirebasePost.class)
     }
 
-    public PostCalendar(String ex, String time, String video) {
+    public PostCalendar(String ex, String time, String weight) {
         this.ex = ex;
         this.time = time;
-        this.video = video;
+        this.weight = weight;
     }
 
     @Exclude
@@ -28,7 +28,7 @@ public class PostCalendar {
         HashMap<String, Object> result = new HashMap<>();
         result.put("ex", ex);
         result.put("time", time);
-        result.put("video", video);
+        result.put("weight", weight);
         return result;
     }
 }

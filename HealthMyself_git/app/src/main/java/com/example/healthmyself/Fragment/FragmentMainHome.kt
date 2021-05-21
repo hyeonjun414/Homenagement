@@ -41,7 +41,7 @@ class FragmentMainHome : Fragment() {
         val progress = view.findViewById<ProgressBar>(R.id.d_day)
 
         if(pref.getLong("d-day",time_x_pref)==0.toLong()){
-            tv_d_day.setText("d-day setting!")
+            tv_d_day.setText("D-??")
         }else{
             setting_d_day(pref, tv_d_day, progress)
         }

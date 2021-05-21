@@ -59,7 +59,7 @@ public class GetFirebaseData {
                         setFlag(true);
                         data.setEx(String.valueOf(task.getResult().child("ex").getValue()));
                         data.setTime(String.valueOf(task.getResult().child("time").getValue()));
-                        data.setVideo(String.valueOf(task.getResult().child("video").getValue()));
+                        data.setWeight(String.valueOf(task.getResult().child("weight").getValue()));
                     };
                 }
             }

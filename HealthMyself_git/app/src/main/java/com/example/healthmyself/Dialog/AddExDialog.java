@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -42,7 +43,7 @@ public class AddExDialog extends Dialog {
 
     private EditText et_text_ex;
     private EditText et_text_time;
-    private EditText et_text_video;
+    private EditText et_text_weight;
 
     private String uid = "1235323214";
 
@@ -50,7 +51,7 @@ public class AddExDialog extends Dialog {
     String day;
     String EX;
     String TIME;
-    String VIDEO;
+    String WEIGHT;
     String gender = "";
     String sort = "id";
 
@@ -66,7 +67,7 @@ public class AddExDialog extends Dialog {
         // 커스텀 다이얼로그의 각 위젯들을 정의한다.
         et_text_ex = findViewById(R.id.put_txt_ex);
         et_text_time = findViewById(R.id.put_txt_time);
-        et_text_video = findViewById(R.id.put_txt_video);
+        et_text_weight = findViewById(R.id.put_txt_weight);
 
         Button saveButton = findViewById(R.id.btnSave);
         Button cancelButton = findViewById(R.id.btnCancle);
@@ -79,7 +80,7 @@ public class AddExDialog extends Dialog {
                 // ...코드..
                 EX = et_text_ex.getText().toString();
                 TIME = et_text_time.getText().toString();
-                VIDEO = et_text_video.getText().toString();
+                WEIGHT = et_text_weight.getText().toString();
                 postFirebaseDatabase(true);
                 Toast.makeText(mContext,"test", Toast.LENGTH_SHORT).show();
                 // Custom Dialog 종료
@@ -107,7 +108,7 @@ public class AddExDialog extends Dialog {
         Map<String, Object> postValues = null;
         day = DateUtil.getDate(calendar.getTimeInMillis(), DateUtil.CALENDAR_DAY_FORMAT);
         if(add){
-            PostCalendar post = new PostCalendar(EX, TIME, VIDEO);
+            PostCalendar post = new PostCalendar(EX, TIME, WEIGHT);
             postValues = post.toMap();
         }
         childUpdates.put("/"+uid + "/calandar/" + day + "/" , postValues);
@@ -127,5 +128,21 @@ public class AddExDialog extends Dialog {
 
     public void setUID(String uid){
         this.uid = uid;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        //바깥레이어 클릭시 안닫히게
+        if(event.getAction()== MotionEvent.ACTION_OUTSIDE){
+            return false;
+        }
+        return true;
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        //안드로이드 백버튼 막기
+        return;
     }
 }

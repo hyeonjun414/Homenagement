@@ -31,7 +31,7 @@ public class ShowExDialog extends Activity {
     private Context mContext;
     String ex="";
     String time="";
-    String video="";
+    String weight="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,16 +40,16 @@ public class ShowExDialog extends Activity {
         setContentView(R.layout.show_ex_dialog);
         TextView txt_ex = findViewById(R.id.txt_showEx_ex);
         TextView txt_time = findViewById(R.id.txt_showEx_time);
-        TextView txt_video = findViewById(R.id.txt_showEx_video);
+        TextView txt_weight = findViewById(R.id.txt_showEx_weight);
         Button cancelButton = findViewById(R.id.btn_showEx_Cancel);
 
         ex = getIntent().getStringExtra("ex");
         time = getIntent().getStringExtra("time");
-        video = getIntent().getStringExtra("video");
+        weight = getIntent().getStringExtra("weight");
 
         txt_ex.setText(ex);
         txt_time.setText(time);
-        txt_video.setText(video);
+        txt_weight.setText(weight);
 
         cancelButton.setOnClickListener(new Button.OnClickListener() {
             @Override
@@ -60,5 +60,20 @@ public class ShowExDialog extends Activity {
                 finish();
             }
         });
+    }
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        //바깥레이어 클릭시 안닫히게
+        if(event.getAction()== MotionEvent.ACTION_OUTSIDE){
+            return false;
+        }
+        return true;
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        //안드로이드 백버튼 막기
+        return;
     }
 }

@@ -254,7 +254,7 @@ public class CalendarAdapter extends RecyclerView.Adapter {
                         Intent i = new Intent(ct, ShowExDialog.class);
                         i.putExtra("ex", gfd.getData().getEx());
                         i.putExtra("time", gfd.getData().getTime());
-                        i.putExtra("video", gfd.getData().getVideo());
+                        i.putExtra("weight", gfd.getData().getWeight());
                         ct.startActivity(i);
                     }
                 }

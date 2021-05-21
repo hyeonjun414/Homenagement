@@ -19,6 +19,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.healthmyself.Activity.LoginActivity
+import com.example.healthmyself.Dialog.AboutDialog
 import com.example.healthmyself.Dialog.AccountDeleteDialog
 import com.example.healthmyself.Dialog.AlarmDialog
 import com.example.healthmyself.R
@@ -43,6 +44,7 @@ class FragmentMainSetting : Fragment() {
         val text_uid = v.findViewById<TextView>(R.id.text_uid)
         val btn_logout = v.findViewById<TextView>(R.id.btn_logout)
         val text_alarminfo = v.findViewById<TextView>(R.id.alarminfo_txt)
+        val text_about = v.findViewById<TextView>(R.id.txt_about)
         alarminfo = text_alarminfo
         val btn_account_delete = v.findViewById<TextView>(R.id.btn_account_delete)
         val check_alarm = v.findViewById<CheckBox>(R.id.alarm_check)
@@ -63,8 +65,9 @@ class FragmentMainSetting : Fragment() {
                 cancelAlarm()
             }
         }
-
+        text_about.setOnClickListener{ moveToAbout() }
         existalramCheck.setOnClickListener{ checkAlarm() }
+
         getUID();
         text_uid.setText("안녕하세요! " + uid + "님")
         updateAlarminfo()
@@ -117,6 +120,10 @@ class FragmentMainSetting : Fragment() {
     private fun moveToSetAlarm(){
         val intent = Intent(requireContext(), AlarmDialog::class.java)
         startActivityForResult(intent, 1)
+    }
+    private fun moveToAbout(){
+        val intent = Intent(requireContext(), AboutDialog::class.java)
+        startActivity(intent)
     }
 
     private fun cancelAlarm(){

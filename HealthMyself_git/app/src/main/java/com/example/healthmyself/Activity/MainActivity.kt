@@ -1,7 +1,7 @@
 package com.example.healthmyself.Activity
 
-import android.content.Context
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.healthmyself.Adapter.AdapterMainFragment
@@ -30,7 +30,12 @@ class MainActivity : AppCompatActivity() {
         //따라서 viewpager의 최대수를 5로 제한하여 프래그먼트 5개모두 데이터를 유지 할 수 있도록 최대치를 설정함
         //결론적으로 모든 프래그먼트를 재사용하게 됨.
     }
-    fun selectFragment(position : Int) {
+    fun selectFragment(position: Int) {
         xml_main_viewpager.setCurrentItem(position, true)
+    }
+
+    override fun onBackPressed() {
+        //안드로이드 백버튼 막기
+        return
     }
 }

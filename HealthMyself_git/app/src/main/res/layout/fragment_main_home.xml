@@ -46,7 +46,7 @@
             android:layout_height="20dp"
             android:layout_gravity="center|bottom"
             android:max="100"
-            android:progress="70"
+            android:progress="0"
             android:progressTint="#59B6FF"
             tools:layout_editor_absoluteX="141dp"
             tools:layout_editor_absoluteY="40dp" />
@@ -62,7 +62,7 @@
         android:background="@drawable/button"
         android:clickable="true"
         android:drawableTop="@drawable/ic_outline_subscriptions_24"
-        android:elevation="100dp"
+
         android:gravity="center_vertical"
         android:paddingTop="55dp"
         android:paddingBottom="20dp"
