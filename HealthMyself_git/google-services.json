@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "250731542642",
+    "firebase_url": "https://healthmyself-a1ef3-default-rtdb.firebaseio.com",
     "project_id": "healthmyself-a1ef3",
     "storage_bucket": "healthmyself-a1ef3.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "250731542642-p4tdr20f3krbfomjogb9t4hl6vnmvj3v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.healthmyself",
+            "certificate_hash": "66a8e31eb4b996c15c7a1865ffc23363688125e6"
+          }
+        },
         {
           "client_id": "250731542642-crct4jl3gi11uq5gnbctrokhlkbl13mt.apps.googleusercontent.com",
           "client_type": 3
