@@ -47,6 +47,7 @@ public class DeviceBootReceiver extends BroadcastReceiver {
             Toast.makeText(context.getApplicationContext(),"[재부팅후] 다음 알람은 " + date_text + "으로 알람이 설정되었습니다!", Toast.LENGTH_SHORT).show();
 
 
+
             if (manager != null) {
                 manager.setRepeating(AlarmManager.RTC_WAKEUP, nextNotifyTime.getTimeInMillis(),
                         AlarmManager.INTERVAL_DAY, pendingIntent);

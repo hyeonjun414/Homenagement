@@ -3,16 +3,63 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"><![CDATA[
     tools:context=".Fragment.FragmentMainHome">
+
+    ]]>
+
+
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/button"
+        android:padding="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:clickable="true"
+            android:src="@drawable/home_stay" />
+
+        <TextView
+            android:id="@+id/d_day_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|top"
+            android:layout_marginRight="30dp"
+            android:clickable="true"
+            android:text="D-100"
+            android:textSize="50dp"
+            android:textStyle="bold" />
+
+        <ProgressBar
+            android:id="@+id/d_day"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_gravity="center|bottom"
+            android:max="100"
+            android:progress="70"
+            android:progressTint="#59B6FF"
+            tools:layout_editor_absoluteX="141dp"
+            tools:layout_editor_absoluteY="40dp" />
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/youtube"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/main_button"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button"
         android:clickable="true"
         android:drawableTop="@drawable/ic_outline_subscriptions_24"
         android:elevation="100dp"
@@ -28,20 +75,22 @@
         app:layout_constraintEnd_toStartOf="@+id/timer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/container"
-        tools:ignore="RtlCompat">
+        tools:ignore="RtlCompat"
+        android:visibility="visible">
 
     </TextView>
 
     <TextView
         android:id="@+id/timer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_marginEnd="60dp"
-        android:background="@drawable/main_button"
+        android:background="@drawable/button"
         android:clickable="true"
         android:drawableTop="@drawable/ic_baseline_access_alarm_24"
         android:gravity="center_vertical"
+        android:layout_marginTop="30dp"
+
         android:paddingTop="55dp"
         android:paddingBottom="20dp"
         android:text="Timer"
@@ -58,14 +107,14 @@
 
     <TextView
         android:id="@+id/set"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_marginEnd="60dp"
-        android:background="@drawable/main_button"
+        android:background="@drawable/button"
         android:clickable="true"
         android:drawableTop="@drawable/ic_outline_settings_24"
         android:gravity="center_vertical"
+
         android:paddingTop="55dp"
         android:paddingBottom="20dp"
         android:text="Setting"
@@ -81,14 +130,14 @@
 
     <TextView
         android:id="@+id/cal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/main_button"
+        android:background="@drawable/button"
         android:clickable="true"
         android:drawableTop="@drawable/ic_baseline_today_24"
         android:gravity="center_vertical"
+
         android:paddingTop="55dp"
         android:paddingBottom="20dp"
         android:text="Calendar"
@@ -102,48 +151,5 @@
         app:layout_constraintTop_toBottomOf="@+id/youtube"
         tools:ignore="RtlCompat" />
 
-    <FrameLayout
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:padding="40dp"
-        android:background="@drawable/main_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/home_stay"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="25dp"
-            android:clickable="true"
-            />
-
-        <TextView
-            android:id="@+id/d_day_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|top"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="30dp"
-            android:text="D-100"
-            android:textSize="50sp"
-            android:textStyle="bold"
-            android:clickable="true"/>
-        <ProgressBar
-            android:id="@+id/d_day"
-            style="@android:style/Widget.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center|bottom"
-            android:max="100"
-            android:progress="70"
-            android:progressTint="#59B6FF"
-            tools:layout_editor_absoluteX="141dp"
-            tools:layout_editor_absoluteY="56dp" />
-
-    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
