@@ -24,9 +24,7 @@ public class Day extends ViewModel {
         return day;
     }
 
-    public void setCal (Calendar cal){
-        this.cal = cal;
-    }
+    public void setCal (Calendar cal){ this.cal = cal; }
 
     public Calendar getCal (){
         return this.cal;

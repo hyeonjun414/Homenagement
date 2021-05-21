@@ -17,17 +17,33 @@
         android:textSize="10dp"
         android:textStyle="bold"
         tool:text="00" />
-
-    <TextView
-        android:id="@+id/item_day_text"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="9dp"
-        android:layout_marginTop="36dp"
-        android:textSize="10dp"
-        tool:text="운동 기록" />
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="8dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/item_day_ex_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:textSize="8dp"
+            android:textColor="@color/black"
+            tool:text="운동" />
+
+        <TextView
+            android:id="@+id/item_day_wegiht_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:textSize="8dp"
+            android:textColor="@color/black"
+            tool:text="체중" />
+    </LinearLayout>
+
 
 
 

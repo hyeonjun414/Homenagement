@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -18,6 +19,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.JsonObject;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
 
 import java.util.Calendar;
 
@@ -38,7 +40,7 @@ public class GetFirebaseData {
 
     public FirebaseData getData(){ return this.data; }
 
-    public void getFirebaseData(Calendar calendar, RelativeLayout layout, Context context){
+    public void getFirebaseData(Calendar calendar, RelativeLayout layout, TextView ex, TextView w, Context context){
         mDatabase = FirebaseDatabase.getInstance().getReference();
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
         String full_day = DateUtil.getDate(calendar.getTimeInMillis(), DateUtil.CALENDAR_DAY_FORMAT);
@@ -54,13 +56,28 @@ public class GetFirebaseData {
                     if(String.valueOf(task.getResult().getValue()).equals("null")){
                         setFlag(false);
                         layout.setBackground(null);
-                    }else{
+                        ex.setText("");
+                        w.setText("");
+                    }
+                    else{
                         layout.setBackground(ContextCompat.getDrawable(context, R.drawable.day_background));
                         setFlag(true);
                         data.setEx(String.valueOf(task.getResult().child("ex").getValue()));
                         data.setTime(String.valueOf(task.getResult().child("time").getValue()));
                         data.setWeight(String.valueOf(task.getResult().child("weight").getValue()));
+
+                        ex.setText(data.getEx());
+                        w.setText(data.getWeight()+"kg");
+
                     };
+                }
+                Calendar day_current = Calendar.getInstance();
+                String day = DateUtil.getDate(calendar.getTimeInMillis(), DateUtil.CALENDAR_DAY_FORMAT);
+                String day2 = DateUtil.getDate(day_current.getTimeInMillis(), DateUtil.CALENDAR_DAY_FORMAT);
+
+                if(day.equals(day2))
+                {
+                    layout.setBackground(ContextCompat.getDrawable(context, R.drawable.current_day_background));
                 }
             }
         });

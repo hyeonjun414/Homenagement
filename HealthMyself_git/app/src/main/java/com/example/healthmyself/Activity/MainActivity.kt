@@ -13,6 +13,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         configureBottonNavigation()
+
+        selectFragment(2);
     }
     private fun configureBottonNavigation() {
         xml_main_viewpager.adapter = AdapterMainFragment(supportFragmentManager, 5)

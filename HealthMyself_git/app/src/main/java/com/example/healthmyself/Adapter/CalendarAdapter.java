@@ -203,7 +203,8 @@ public class CalendarAdapter extends RecyclerView.Adapter {
 
 
         TextView itemDay;
-        TextView itemDay_txt;
+        TextView itemDay_ex_txt;
+        TextView itemDay_weight_txt;
         RelativeLayout item_layout;
         Context ct;
 
@@ -217,6 +218,8 @@ public class CalendarAdapter extends RecyclerView.Adapter {
         public void initView(View v){
 
             itemDay = (TextView)v.findViewById(R.id.item_day);
+            itemDay_ex_txt = (TextView)v.findViewById(R.id.item_day_ex_text);
+            itemDay_weight_txt = (TextView)v.findViewById(R.id.item_day_wegiht_text);
             item_layout = (RelativeLayout)v.findViewById(R.id.item_layout);
             ct = v.getContext();
         }
@@ -227,8 +230,7 @@ public class CalendarAdapter extends RecyclerView.Adapter {
 
             String day = ((Day)model).getDay();
             int day_of_week = ((Day)model).getDOW();
-            String flag = ((Day)model).getText();
-            gfd.getFirebaseData(((Day)model).getCal(), item_layout, ct);
+            gfd.getFirebaseData(((Day)model).getCal(), item_layout, itemDay_ex_txt, itemDay_weight_txt, ct);
 
             Log.d("day", day);
             Log.d("day_of_week", String.valueOf(day_of_week));
@@ -245,6 +247,10 @@ public class CalendarAdapter extends RecyclerView.Adapter {
                 itemDay.setText(day);
                 itemDay.setTextColor(Color.BLACK);
             }
+
+            itemDay_ex_txt.setText("");
+            itemDay_weight_txt.setText("");
+
 
             item_layout.setOnClickListener(new View.OnClickListener() {
                 @Override

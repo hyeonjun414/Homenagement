@@ -49,7 +49,7 @@ public class ShowExDialog extends Activity {
 
         txt_ex.setText(ex);
         txt_time.setText(time);
-        txt_weight.setText(weight);
+        txt_weight.setText(weight+" kg");
 
         cancelButton.setOnClickListener(new Button.OnClickListener() {
             @Override

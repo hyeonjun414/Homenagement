@@ -4,6 +4,7 @@ public class FirebaseData {
     private String ex;
     private String time;
     private String weight;
+
     public String getTime() {
         return time;
     }

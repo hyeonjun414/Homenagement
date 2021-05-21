@@ -7,6 +7,7 @@ import java.util.Locale;
 public class DateUtil {
     public final static String CALENDAR_HEADER_FORMAT = "yyyy년 MM월";
     public final static String CALENDAR_DAY_FORMAT = "yyyyMMd";
+    public final static String CALENDAR_DAY_FORMAT2 = "yyyy-M-d";
     public final static String YEAR_FORMAT = "yyyy";
     public final static String MONTH_FORMAT = "MM";
     public final static String DAY_FORMAT = "d";
