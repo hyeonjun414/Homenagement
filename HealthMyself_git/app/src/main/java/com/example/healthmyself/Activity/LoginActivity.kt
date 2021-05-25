@@ -41,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
                         .createSignInIntentBuilder()
                         .setAvailableProviders(providers)
                         .setTheme(R.style.GreenTheme)
-                        .setLogo(R.drawable.applogo)
+                        .setLogo(R.drawable.applogo_2)
                         .build(),
                 RC_SIGN_IN)
     }
