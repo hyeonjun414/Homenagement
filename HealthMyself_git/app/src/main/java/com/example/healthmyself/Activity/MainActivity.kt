@@ -5,6 +5,7 @@ import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.healthmyself.Adapter.AdapterMainFragment
+import com.example.healthmyself.CustomClass.ZoomOutPageTransformer
 import com.example.healthmyself.R
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     }
     private fun configureBottonNavigation() {
         xml_main_viewpager.adapter = AdapterMainFragment(supportFragmentManager, 5)
+        xml_main_viewpager.setPageTransformer(true, ZoomOutPageTransformer())
         xml_main_tablayout.setupWithViewPager(xml_main_viewpager)
 
         val viewBtmNaviMain : View = this.layoutInflater.inflate(R.layout.btm_navigation_main, null, false)
