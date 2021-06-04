@@ -58,7 +58,6 @@ public class CalendarAdapter extends RecyclerView.Adapter {
             return EMPTY_TYPE; // 비어있는 일자 타입
         } else {
             return DAY_TYPE; // 일자 타입
-
         }
     }
 
@@ -66,37 +65,33 @@ public class CalendarAdapter extends RecyclerView.Adapter {
     // viewHolder 생성
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, 
+                                                      int viewType) {
 
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
         // 날짜 타입
         if (viewType == HEADER_TYPE) {
-
             HeaderViewHolder viewHolder = new HeaderViewHolder(inflater.inflate(R.layout.item_calendar_header, parent, false));
-
             StaggeredGridLayoutManager.LayoutParams params = (StaggeredGridLayoutManager.LayoutParams)viewHolder.itemView.getLayoutParams();
             params.setFullSpan(true); //Span을 하나로 통합하기
             viewHolder.itemView.setLayoutParams(params);
-
             return viewHolder;
-
-            //비어있는 일자 타입
-        } else if (viewType == EMPTY_TYPE) {
+        }
+        //비어있는 일자 타입
+        else if (viewType == EMPTY_TYPE) {
             return new EmptyViewHolder(inflater.inflate(R.layout.item_day_empty, parent, false));
-
         }
         // 일자 타입
         else {
             return new DayViewHolder(inflater.inflate(R.layout.item_day, parent, false));
-
         }
-
     }
 
     // 데이터 넣어서 완성시키는것
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder,
+                                 int position) {
         int viewType = getItemViewType(position);
 
         /**날짜 타입 꾸미기*/
@@ -171,7 +166,6 @@ public class CalendarAdapter extends RecyclerView.Adapter {
             // 일자 값 가져오기
             String header = ((CalendarHeader)model).getHeader();
 
-            // header에 표시하기, ex : 2018년 8월
             itemHeaderTitle.setText(header);
 
 
@@ -180,28 +174,18 @@ public class CalendarAdapter extends RecyclerView.Adapter {
 
 
     private class EmptyViewHolder extends RecyclerView.ViewHolder { // 비어있는 요일 타입 ViewHolder
-
-
         public EmptyViewHolder(@NonNull View itemView) {
             super(itemView);
-
             initView(itemView);
         }
-
         public void initView(View v){
-
         }
-
         public void bind(ViewModel model){
-
-
         };
     }
 
     // TODO : item_day와 매칭
-    private class DayViewHolder extends RecyclerView.ViewHolder {// 요일 입 ViewHolder
-
-
+    private class DayViewHolder extends RecyclerView.ViewHolder {// 요일 타입 ViewHolder
         TextView itemDay;
         TextView itemDay_ex_txt;
         TextView itemDay_weight_txt;
@@ -210,22 +194,17 @@ public class CalendarAdapter extends RecyclerView.Adapter {
 
         public DayViewHolder(@NonNull View itemView) {
             super(itemView);
-
             initView(itemView);
-
         }
 
         public void initView(View v){
-
             itemDay = (TextView)v.findViewById(R.id.item_day);
             itemDay_ex_txt = (TextView)v.findViewById(R.id.item_day_ex_text);
             itemDay_weight_txt = (TextView)v.findViewById(R.id.item_day_wegiht_text);
             item_layout = (RelativeLayout)v.findViewById(R.id.item_layout);
             ct = v.getContext();
         }
-
         public void bind(ViewModel model){
-
             GetFirebaseData gfd = new GetFirebaseData();
 
             String day = ((Day)model).getDay();
@@ -236,7 +215,6 @@ public class CalendarAdapter extends RecyclerView.Adapter {
             Log.d("day_of_week", String.valueOf(day_of_week));
 
             // 일자 값 View에 보이게하기
-
             if(day_of_week == 1) {
                 itemDay.setText(day);
                 itemDay.setTextColor(Color.RED);
@@ -268,25 +246,4 @@ public class CalendarAdapter extends RecyclerView.Adapter {
         };
     }
 
-    /*
-    public void getFirebaseDatabase(){
-        ValueEventListener postListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.e("getFirebaseDatabase", "key: " + dataSnapshot.getChildrenCount());
-
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    String key = postSnapshot.getKey();
-                    FirebasePost get = postSnapshot.getValue(FirebasePost.class);
-                    String[] info = {get.id, get.name, String.valueOf(get.age), get.gender};
-
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.w("getFirebaseDatabase","loadPost:onCancelled", databaseError.toException());
-            }
-        };
-    }*/
 }

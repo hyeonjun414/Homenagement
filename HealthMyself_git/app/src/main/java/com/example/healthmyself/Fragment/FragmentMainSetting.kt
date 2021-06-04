@@ -44,17 +44,14 @@ class FragmentMainSetting : Fragment() {
         val text_uid = v.findViewById<TextView>(R.id.text_uid)
         val btn_logout = v.findViewById<TextView>(R.id.btn_logout)
         val text_alarminfo = v.findViewById<TextView>(R.id.alarminfo_txt)
-        val text_about = v.findViewById<TextView>(R.id.txt_about)
         alarminfo = text_alarminfo
+        val text_about = v.findViewById<TextView>(R.id.txt_about)
         val btn_account_delete = v.findViewById<TextView>(R.id.btn_account_delete)
         val check_alarm = v.findViewById<CheckBox>(R.id.alarm_check)
         val existalramCheck = v.findViewById<Button>(R.id.existAlarmCheck)
-        btn_logout.setOnClickListener{ signoutAccount(v) }
-        btn_account_delete.setOnClickListener{ showDeleteDialog() }
-
+        
         val load = requireContext().getSharedPreferences("pref", 0)
         var existAlarm = load.getBoolean("alarm", false)
-        Log.d("e", existAlarm.toString())
         if(existAlarm) check_alarm.toggle()
 
         check_alarm.setOnCheckedChangeListener{ buttonView, isChecked ->
@@ -67,7 +64,9 @@ class FragmentMainSetting : Fragment() {
         }
         text_about.setOnClickListener{ moveToAbout() }
         existalramCheck.setOnClickListener{ checkAlarm() }
-
+        btn_logout.setOnClickListener{ signoutAccount(v) }
+        btn_account_delete.setOnClickListener{ showDeleteDialog() }
+        
         getUID();
         text_uid.setText("안녕하세요! " + uid + "님")
         updateAlarminfo()
@@ -92,6 +91,18 @@ class FragmentMainSetting : Fragment() {
                     Toast.makeText(requireContext(), "로그아웃 하셨습니다.", Toast.LENGTH_SHORT).show()
                 }
     }
+    private fun showDeleteDialog() {
+        AccountDeleteDialog().apply {
+            addAccountDeleteDialogInterface(object :
+                    AccountDeleteDialog.AccountDeleteDialogInterface {
+                override fun delete() {
+                    deleteAccount()
+                }
+                override fun cancelDelete() {
+                }
+            })
+        }.show(requireFragmentManager(), "")
+    }
     private fun deleteAccount(){
         AuthUI.getInstance()
                 .delete(requireContext())
@@ -100,19 +111,7 @@ class FragmentMainSetting : Fragment() {
                     Toast.makeText(requireContext(), "탈퇴 하셨습니다.", Toast.LENGTH_SHORT).show()
                 }
     }
-    private fun showDeleteDialog() {
-        AccountDeleteDialog().apply {
-            addAccountDeleteDialogInterface(object :
-                    AccountDeleteDialog.AccountDeleteDialogInterface {
-                override fun delete() {
-                    deleteAccount()
-                }
-
-                override fun cancelDelete() {
-                }
-            })
-        }.show(requireFragmentManager(), "")
-    }
+    
     private fun moveToMainActivity(){
         startActivity(Intent(requireContext(), LoginActivity::class.java))
     }

@@ -44,10 +44,7 @@ public class AlarmDialog extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.alarm_dialog);
 
-
         final TimePicker picker=(TimePicker)findViewById(R.id.timePicker);
-        //picker.setIs24HourView(true);
-
 
         // 앞서 설정한 값으로 보여주기
         // 없으면 디폴트 값은 현재시간
@@ -57,13 +54,8 @@ public class AlarmDialog extends Activity {
         Calendar nextNotifyTime = new GregorianCalendar();
         nextNotifyTime.setTimeInMillis(millis);
 
-        Date nextDate = nextNotifyTime.getTime();
-        String date_text = new SimpleDateFormat("yyyy년 MM월 dd일 EE요일 a hh시 mm분 ", Locale.getDefault()).format(nextDate);
-        Toast.makeText(getApplicationContext(),"[처음 실행시] 다음 알람은 " + date_text + "으로 알람이 설정되었습니다!", Toast.LENGTH_SHORT).show();
-
-
         // 이전 설정값으로 TimePicker 초기화
-        Date currentTime = nextNotifyTime.getTime();
+        Date curretTime = nextNotifyTime.getTime();
         SimpleDateFormat HourFormat = new SimpleDateFormat("kk", Locale.getDefault());
         SimpleDateFormat MinuteFormat = new SimpleDateFormat("mm", Locale.getDefault());
 
@@ -148,9 +140,6 @@ public class AlarmDialog extends Activity {
 
     void diaryNotification(Calendar calendar)
     {
-//        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
-//        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-//        Boolean dailyNotify = sharedPref.getBoolean(SettingsActivity.KEY_PREF_DAILY_NOTIFICATION, true);
         Boolean dailyNotify = true; // 무조건 알람을 사용
 
         PackageManager pm = this.getPackageManager();
@@ -162,8 +151,6 @@ public class AlarmDialog extends Activity {
 
         // 사용자가 매일 알람을 허용했다면
         if (dailyNotify) {
-
-
             if (alarmManager != null) {
 
                 alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
@@ -173,23 +160,13 @@ public class AlarmDialog extends Activity {
                     alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
                 }
             }
-
             // 부팅 후 실행되는 리시버 사용가능하게 설정
             pm.setComponentEnabledSetting(receiver,
                     PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                     PackageManager.DONT_KILL_APP);
-
         }
-//        else { //Disable Daily Notifications
-//            if (PendingIntent.getBroadcast(this, 0, alarmIntent, 0) != null && alarmManager != null) {
-//                alarmManager.cancel(pendingIntent);
-//                //Toast.makeText(this,"Notifications were disabled",Toast.LENGTH_SHORT).show();
-//            }
-//            pm.setComponentEnabledSetting(receiver,
-//                    PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-//                    PackageManager.DONT_KILL_APP);
-//        }
     }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         //바깥레이어 클릭시 안닫히게
@@ -198,8 +175,6 @@ public class AlarmDialog extends Activity {
         }
         return true;
     }
-
-
     @Override
     public void onBackPressed() {
         //안드로이드 백버튼 막기

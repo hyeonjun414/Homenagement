@@ -15,32 +15,28 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loding)
-
         checkPreviousLogin()
     }
     private fun checkPreviousLogin() {
         val user = FirebaseAuth.getInstance().currentUser
-        Log.d("test", "Name : " + user?.email)
-
-        if(user == null) showLoginWindow()
-        else moveToMain()
+        if(user == null)
+            showLoginWindow()
+        else
+            moveToMain()
     }
-
     private fun moveToMain() {
         startActivity(Intent(this, MainActivity::class.java))
     }
     private fun showLoginWindow() {
-        // Choose authentication providers
         val providers = arrayListOf(
                 AuthUI.IdpConfig.EmailBuilder().build(),
                 AuthUI.IdpConfig.GoogleBuilder().build())
 
-        // Create and launch sign-in intent
         startActivityForResult(
                 AuthUI.getInstance()
                         .createSignInIntentBuilder()
                         .setAvailableProviders(providers)
-                        .setTheme(R.style.GreenTheme)
+                        .setTheme(R.style.MainTheme)
                         .setLogo(R.drawable.applogo_2)
                         .build(),
                 RC_SIGN_IN)
@@ -51,12 +47,8 @@ class LoginActivity : AppCompatActivity() {
         if (requestCode == RC_SIGN_IN) {
             val response = IdpResponse.fromResultIntent(data)
             if (resultCode == RESULT_OK) {
-                // 로그인 성공
-                val user = FirebaseAuth.getInstance().currentUser
                 moveToMain()
-                // ...
             } else {
-                // 로그인 실패할 경우
                 Toast.makeText(this, "로그인 실패, 로그인을 다시 실행하세요.", Toast.LENGTH_LONG).show()
             }
         }

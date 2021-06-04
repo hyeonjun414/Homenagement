@@ -54,36 +54,23 @@ public class FragmentMainCalendar extends Fragment {
         super.onCreate(savedInstanceState);
     }
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_main_calendar, container, false); //뷰 호출
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_main_calendar, container, false);
         btn_Add = (FloatingActionButton)rootView.findViewById(R.id.btn_addex);
         textView = (TextView)rootView.findViewById(R.id.title);
         recyclerView = (RecyclerView)rootView.findViewById(R.id.calendar);
-        initDatabase();
         initSet();
         setRecycler();
-
-
 
         return rootView;
     }
 
-    // 뷰의 요소를 초기화화
-
-
     // 캘린더와 버튼의 초기화
     public void initSet(){
-        initCalendarList();
         initBtn();
+        initCalendarList();
     }
-
-    // 캘린더 초기화
-    public void initCalendarList() {
-        GregorianCalendar cal = new GregorianCalendar();
-        setCalendarList(cal);
-    }
-
     // 버튼 기능 설정
     public void initBtn()
     {
@@ -99,16 +86,17 @@ public class FragmentMainCalendar extends Fragment {
         });
     }
 
+    // 캘린더 초기화
+    public void initCalendarList() {
+        GregorianCalendar cal = new GregorianCalendar();
+        setCalendarList(cal);
+    }
+
     // 오브젝트 리스트인 캘린더 리스트를 설정
     public void setCalendarList(GregorianCalendar cal) {
-
-        //setTitle(cal.getTimeInMillis());
-
         ArrayList<Object> calendarList = new ArrayList<>();
-        //ArrayList<DayObject> calendarList = new ArrayList<>();
-
-        // 뒤로 3달 앞으로 3달까지 기록을 확인할 수 있다.
-        for (int i = -1; i < 1; i++) {
+        
+        for (int i = -2; i < 1; i++) {
             try {
                 //
                 GregorianCalendar calendar = new GregorianCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + i, 1, 0, 0, 0);
@@ -122,22 +110,15 @@ public class FragmentMainCalendar extends Fragment {
                 int max = calendar.getActualMaximum(Calendar.DAY_OF_MONTH); // 해당 월에 마지막 요일
 
                 // EMPTY 생성
-                for (int j = 0; j < dayOfWeek; j++) {
+                for (int j = 0; j < dayOfWeek; j++)
                     calendarList.add(Keys.EMPTY); // 비어있는 일자 타입
-                }
-                for (int j = 1; j <= max; j++) {
-                    calendarList.add(new GregorianCalendar(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), j)); //일자 타입
-
-                }
-
-
-                // TODO : 결과값 넣을떄 여기다하면될듯
-
+                for (int j = 1; j <= max; j++) 
+                    calendarList.add(new GregorianCalendar(calendar.get(Calendar.YEAR),
+                                 calendar.get(Calendar.MONTH), j)); //일자 타입
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-
         mCalendarList = calendarList; // 만들어진 달력을 값에 넣어줌.
     }
 
@@ -150,7 +131,8 @@ public class FragmentMainCalendar extends Fragment {
         }
 
         //그리드 레이아웃의 설정을 해줌
-        manager = new StaggeredGridLayoutManager(7, StaggeredGridLayoutManager.VERTICAL);
+        manager = new StaggeredGridLayoutManager(7,
+                      StaggeredGridLayoutManager.VERTICAL);
 
         // 캘린더 오브젝트 리스트에 어댑터를 연결
         mAdapter = new CalendarAdapter(mCalendarList);
@@ -164,68 +146,6 @@ public class FragmentMainCalendar extends Fragment {
             recyclerView.scrollToPosition(mCenterPosition);
         }
     }
-
-    private void initDatabase() {
-
-        mDatabase = FirebaseDatabase.getInstance();
-
-        mReference = mDatabase.getReference("calendar");
-        mReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot messageData : snapshot.getChildren()){
-                    String msg2 = messageData.getValue().toString();
-                    //mCalendarList.add();
-                    //mAdapter.add();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        mReference.child("log").setValue("check");
-
-        mChild = new ChildEventListener() {
-
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        };
-        mReference.addChildEventListener(mChild);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mReference.removeEventListener(mChild);
-    }
-
-
-
-
     //기본 요소
     public static FragmentMainCalendar newInstance(String param1, String param2) {
         FragmentMainCalendar fragment = new FragmentMainCalendar();
