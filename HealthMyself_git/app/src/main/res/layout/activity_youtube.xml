@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".activity.YoutubeActivity">
+    >
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -19,7 +19,7 @@
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmer1"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@android:color/white"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +35,7 @@
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmer2"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@android:color/white"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
