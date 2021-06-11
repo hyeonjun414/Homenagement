@@ -164,8 +164,8 @@ class FragmentMainSetting : Fragment() {
     }
     private fun getUID()
     {
-        val user : FirebaseUser = FirebaseAuth.getInstance().currentUser;
-        Log.d("e", "getUID: " + user.displayName)
-        uid = user.displayName.toString();
+        val user : FirebaseUser? = FirebaseAuth.getInstance().currentUser;
+        Log.d("e", "getUID: " + user?.displayName)
+        uid = user?.displayName.toString();
     }
 }

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.DevBox.Homenagement.Dialog.AppExitDialog
 import com.DevBox.Homenagement.R
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
@@ -51,5 +52,25 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "로그인 실패, 로그인을 다시 실행하세요.", Toast.LENGTH_LONG).show()
             }
         }
+    }
+    override fun onBackPressed() {
+        //안드로이드 백버튼 막기
+        exitApp()
+        return
+    }
+    private fun exitApp() {
+        AppExitDialog().apply {
+            AddAppExitDialogInterface(object :
+                    AppExitDialog.AppExitDialogInterface {
+                override fun exit() {
+                    moveTaskToBack(true)
+                    finishAndRemoveTask()
+                    android.os.Process.killProcess(android.os.Process.myPid())
+                }
+
+                override fun cancelExit() {
+                }
+            })
+        }.show(supportFragmentManager, "")
     }
 }

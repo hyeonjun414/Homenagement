@@ -8,14 +8,14 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:250731542642:android:c33ed89badd95d5f122aeb",
+        "mobilesdk_app_id": "1:250731542642:android:4cf4d1bf3dc542d0122aeb",
         "android_client_info": {
           "package_name": "com.DevBox.Homenagement"
         }
       },
       "oauth_client": [
         {
-          "client_id": "250731542642-2ltg7n5ak2kukctp277mncafgn08dq37.apps.googleusercontent.com",
+          "client_id": "250731542642-3e3aa2rlhcdmo884f58bl53oi876hqk7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.DevBox.Homenagement",

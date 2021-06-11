@@ -119,8 +119,8 @@ public class WidgetService extends Service {
             float initialTouchX, initialTouchY;
             long startClickTime;
             long dropClickTime;
-            int MAX_CLICK_DURATION=400;
-            int MIN_CLICK_DURATION=100;
+            int MAX_CLICK_DURATION=600;
+            int MIN_CLICK_DURATION=300;
 
 
 
