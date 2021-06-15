@@ -118,14 +118,16 @@ public class FragmentMainTimer_Java extends Fragment {
         pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                countDownTimer.cancel();
+                if(flag == 1)
+                    countDownTimer.cancel();
                 flag=0;
             }
         });
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                countDownTimer.cancel();
+                if(flag == 1)
+                    countDownTimer.cancel();
                 tv_time.setText(time);
                 flag=0;
             }
